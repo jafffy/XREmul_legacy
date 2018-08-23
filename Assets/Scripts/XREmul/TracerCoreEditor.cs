@@ -5,83 +5,86 @@ using UnityEditor;
 
 [CustomEditor(typeof(TracerCore))]
 public class TracerCoreEditor : Editor {
-    enum PlayerState { Idle, Playing, Paused };
-    enum RecorderState { Idle, Recording, Paused }
-
-    PlayerState playerState = PlayerState.Idle;
-    RecorderState recorderState = RecorderState.Idle;
-
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
         var tracerCore = (TracerCore)target;
 
-        GUILayout.Label(string.Format("Player State: {0}", playerState.ToString()));
+        GUILayout.Label(string.Format("Player State: {0}", tracerCore.CurrentPlayerState.ToString()));
 
-        if (playerState == PlayerState.Idle)
+        if (tracerCore.CurrentPlayerState == PlayerState.Idle)
         {
             if (GUILayout.Button("Play"))
             {
-                playerState = PlayerState.Playing;
+                tracerCore.StartPlay();
+
+                tracerCore.CurrentPlayerState = PlayerState.Playing;
             }
         }
-        else if (playerState == PlayerState.Playing)
+        else if (tracerCore.CurrentPlayerState == PlayerState.Playing)
         {
             if (GUILayout.Button("Pause"))
             {
-                playerState = PlayerState.Paused;
+                tracerCore.CurrentPlayerState = PlayerState.Paused;
             }
 
             if (GUILayout.Button("Stop"))
             {
-                playerState = PlayerState.Idle;
+                tracerCore.StopPlay();
+
+                tracerCore.CurrentPlayerState = PlayerState.Idle;
             }
         }
-        else if (playerState == PlayerState.Paused)
+        else if (tracerCore.CurrentPlayerState == PlayerState.Paused)
         {
             if (GUILayout.Button("Resume"))
             {
-                playerState = PlayerState.Playing;
+                tracerCore.CurrentPlayerState = PlayerState.Playing;
             }
 
             if (GUILayout.Button("Stop"))
             {
-                playerState = PlayerState.Idle;
+                tracerCore.StopPlay();
+
+                tracerCore.CurrentPlayerState = PlayerState.Idle;
             }
         }
 
-        GUILayout.Label(string.Format("Recorder State: {0}", recorderState.ToString()));
+        GUILayout.Label(string.Format("Recorder State: {0}", tracerCore.CurrentRecorderState.ToString()));
 
-        if (recorderState == RecorderState.Idle)
+        if (tracerCore.CurrentRecorderState == RecorderState.Idle)
         {
             if (GUILayout.Button("Record"))
             {
-                recorderState = RecorderState.Recording;
+                tracerCore.StartRecord();
+                tracerCore.CurrentRecorderState = RecorderState.Recording;
             }
         }
-        else if (recorderState == RecorderState.Recording)
+        else if (tracerCore.CurrentRecorderState == RecorderState.Recording)
         {
             if (GUILayout.Button("Pause"))
             {
-                recorderState = RecorderState.Paused;
+                tracerCore.CurrentRecorderState = RecorderState.Paused;
             }
 
             if (GUILayout.Button("Stop"))
             {
-                recorderState = RecorderState.Idle;
+                tracerCore.StopRecord();
+                tracerCore.CurrentRecorderState = RecorderState.Idle;
             }
         }
-        else if (recorderState == RecorderState.Paused)
+        else if (tracerCore.CurrentRecorderState == RecorderState.Paused)
         {
             if (GUILayout.Button("Resume"))
             {
-                recorderState = RecorderState.Recording;
+                tracerCore.CurrentRecorderState = RecorderState.Recording;
             }
 
             if (GUILayout.Button("Stop"))
             {
-                recorderState = RecorderState.Idle;
+                tracerCore.StopRecord();
+                tracerCore.CurrentRecorderState = RecorderState.Idle;
             }
         }
     }

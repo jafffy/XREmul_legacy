@@ -367,6 +367,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5039e682c25965043a3a79435b0af6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrackingObjects:
+  - {fileID: 534669902}
+  CurrentPlayerState: 0
+  CurrentRecorderState: 0
+  RecorderTimer: 0
 --- !u!4 &1674381981
 Transform:
   m_ObjectHideFlags: 0

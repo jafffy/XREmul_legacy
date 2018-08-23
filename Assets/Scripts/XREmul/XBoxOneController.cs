@@ -39,10 +39,11 @@ public class XBoxOneController : MonoBehaviour {
         var rotateVector = new Vector2(state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y);
 
         float sensitivityX = 5.0f, sensitivityY = 5.0f;
+        float minRotationY = -80.0f, maxRotationY = 80.0f;
 
         rotationX = transform.localEulerAngles.y + rotateVector.x * sensitivityX;
         rotationY += rotateVector.y * sensitivityY;
-        rotationY = Mathf.Clamp(rotationY, -80.0f, 80.0f);
+        rotationY = Mathf.Clamp(rotationY, minRotationY, maxRotationY);
         transform.localEulerAngles = new Vector3(-rotationY, rotationX);
 
         transform.localPosition +=
