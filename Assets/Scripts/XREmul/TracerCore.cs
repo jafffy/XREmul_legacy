@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TracerCore : MonoBehaviour {
-    public List<GameObject> TrackingObjects = new List<GameObject>();
+    public GameObject TrackedCamera;
+
+    public enum PlayerState { Idle, Playing, Paused };
+    public enum RecorderState { Idle, Recording, Paused }
+
+    public PlayerState CurrentPlayerState = PlayerState.Idle;
+    public RecorderState CurrentRecorderState = RecorderState.Idle;
+    public float RecorderTimer = 0.0f;
+    public float PlayerTimer = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -16,26 +24,20 @@ public class TracerCore : MonoBehaviour {
 	void Update () {
         if (CurrentPlayerState == PlayerState.Playing)
         {
-            foreach (var gameObject in TrackingObjects)
-            {
-                gameObject.transform.eulerAngles =
-                    XRHMDTracer.Singleton.traces[index].Direction;
-                gameObject.transform.position =
-                    XRHMDTracer.Singleton.traces[index].Position;
-            }
+            TrackedCamera.transform.eulerAngles =
+                XRHMDTracer.Singleton.traces[index].Direction;
+            TrackedCamera.transform.position =
+                XRHMDTracer.Singleton.traces[index].Position;
 
             PlayerTimer += Time.deltaTime;
             index = index + 1;
         }
         if (CurrentRecorderState == RecorderState.Recording)
         {
-            foreach (var gameObject in TrackingObjects)
-            {
-                XRHMDTracer.Singleton.Insert(
-                    RecorderTimer,
-                    gameObject.transform.eulerAngles,
-                    gameObject.transform.position);
-            }
+            XRHMDTracer.Singleton.Insert(
+                RecorderTimer,
+                TrackedCamera.transform.eulerAngles,
+                TrackedCamera.transform.position);
 
             RecorderTimer += Time.deltaTime;
         }
@@ -44,6 +46,7 @@ public class TracerCore : MonoBehaviour {
     public void StartPlay()
     {
         PlayerTimer = 0.0f;
+        index = 0;
     }
 
     public void StopPlay()
@@ -61,12 +64,5 @@ public class TracerCore : MonoBehaviour {
     public void StopRecord()
     {
     }
-
-    public PlayerState CurrentPlayerState = PlayerState.Idle;
-    public RecorderState CurrentRecorderState = RecorderState.Idle;
-    public float RecorderTimer = 0.0f;
-    public float PlayerTimer = 0.0f;
 }
 
-public enum PlayerState { Idle, Playing, Paused };
-public enum RecorderState { Idle, Recording, Paused }

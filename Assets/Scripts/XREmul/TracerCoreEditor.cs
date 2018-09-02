@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+using PlayerState = TracerCore.PlayerState;
+using RecorderState = TracerCore.RecorderState;
+
 [CustomEditor(typeof(TracerCore))]
 public class TracerCoreEditor : Editor {
     public override void OnInspectorGUI()

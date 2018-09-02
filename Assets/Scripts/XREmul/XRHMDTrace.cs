@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class XRHMDTracer {
+public class XRHMDTracer
+{
     static public XRHMDTracer Singleton
     {
         get { return _singleton; }
