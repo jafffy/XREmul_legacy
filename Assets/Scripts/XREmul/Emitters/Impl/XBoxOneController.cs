@@ -10,13 +10,6 @@ public class XBoxOneController : MonoBehaviour {
 
     float rotationX = 0.0f, rotationY = 0.0f;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!playerIndexSet || !prevState.IsConnected)
