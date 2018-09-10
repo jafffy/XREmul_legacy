@@ -90,5 +90,10 @@ public class TracerCoreEditor : Editor {
                 tracerCore.CurrentRecorderState = RecorderState.Idle;
             }
         }
+
+        if (GUILayout.Button("Dump to file"))
+        {
+            tracerCore.DumpToFile();
+        }
     }
 }

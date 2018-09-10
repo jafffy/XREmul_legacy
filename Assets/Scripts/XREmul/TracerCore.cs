@@ -64,5 +64,10 @@ public class TracerCore : MonoBehaviour {
     public void StopRecord()
     {
     }
+
+    public void DumpToFile()
+    {
+        TracerGlobal.Instance.DumpToFile();
+    }
 }
 

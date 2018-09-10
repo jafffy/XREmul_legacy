@@ -440,6 +440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea656f39a49123e438c64c2f237f8f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsRecording: 1
+  RecordingSourceName: GamePadHeadDirection
 --- !u!4 &1148410904
 Transform:
   m_ObjectHideFlags: 0
@@ -475,3 +477,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f1beaacf420b64f89fb3f7436bb1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsRecording: 1
+  RecordingSourceName: GamePadHeadPosition
