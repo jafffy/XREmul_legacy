@@ -45,9 +45,10 @@ public class HeadDirectionReplayerEmitter : AbstractHeadDirectionEmitter {
                         return new HeadDirectionLog
                         {
                             timer = float.Parse(splitted[0]),
-                            rotation = Quaternion.Euler(float.Parse(splitted[1]),
-                            float.Parse(splitted[2]), float.Parse(splitted[3]));
-                        });
+                            rotation = Quaternion.Euler(float.Parse(splitted[1]), float.Parse(splitted[2]), float.Parse(splitted[3]))
+                        };
+                    }
+                    ).ToList();
 
         headDirectionLogIndex = 0;
     }
