@@ -62,8 +62,4 @@ public class TestScript : MonoBehaviour {
         LeapDataProvider.getInstance().StartReplay();
     }
 
-    public void ChangeMesh()
-    {
-        
-    }
 }
