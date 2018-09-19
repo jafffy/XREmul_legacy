@@ -7,11 +7,13 @@ using UnityEditor;
 using Leap.Unity;
 using Leap;
 using Leap.Unity.Encoding;
-
+using Leap.Unity.Interaction;
 public class TestScript : MonoBehaviour {
     public HandModelManager handModelManager;
     public LeapXRServiceProvider provider;
-    public CapsuleHand rightHand;
+    public InteractionHand rightHand;
+    public InteractionHand leftHand;
+
     Frame[] capturedFrames;
     int cursor = 0;
     bool captureEnable = false;
@@ -54,7 +56,12 @@ public class TestScript : MonoBehaviour {
         Debug.Log("Changed");
         handModelManager.leapProvider = LeapDataProvider.getInstance();
         provider.enabled = false;
+         leftHand.leapProvider = LeapDataProvider.getInstance();
+        rightHand.leapProvider = LeapDataProvider.getInstance();
+        
         LeapDataProvider.getInstance().StartReplay();
+
+       
     }
 
 }
