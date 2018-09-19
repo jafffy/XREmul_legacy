@@ -40,15 +40,16 @@ public class HeadDirectionReplayerEmitter : AbstractHeadDirectionEmitter {
                     Path.Combine(Application.dataPath,
                     HeadDirectionLogPath + ".log")))
                     .Split("\n".ToCharArray(), 1)
-                    .Select(x => {
+                    .Select(x =>
+                    {
                         string[] splitted = x.Split(",".ToCharArray(), 1);
                         return new HeadDirectionLog
                         {
                             timer = float.Parse(splitted[0]),
-                            rotation = Quaternion.Euler(float.Parse(splitted[1]), float.Parse(splitted[2]), float.Parse(splitted[3]))
+                            rotation = Quaternion.Euler(float.Parse(splitted[1]),
+                            float.Parse(splitted[2]), float.Parse(splitted[3]))
                         };
-                    }
-                    ).ToList();
+                    }).ToList();
 
         headDirectionLogIndex = 0;
     }
