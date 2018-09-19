@@ -48,7 +48,6 @@ public class LeapDataProvider : LeapProvider
 	}
 	void Update()
 	{
-		Debug.Log("cursor : " + cursor);
 		DispatchUpdateFrameEvent(CurrentFrame);
 	}
 

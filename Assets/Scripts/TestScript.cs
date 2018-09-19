@@ -21,7 +21,7 @@ public class TestScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        capturedFrames = new Frame[150];
+        capturedFrames = new Frame[300];
 	}
 	
 	// Update is called once per frame
@@ -58,10 +58,12 @@ public class TestScript : MonoBehaviour {
         provider.enabled = false;
          leftHand.leapProvider = LeapDataProvider.getInstance();
         rightHand.leapProvider = LeapDataProvider.getInstance();
-        
-        LeapDataProvider.getInstance().StartReplay();
 
-       
+        LeapDataProvider.getInstance().StartReplay();
     }
 
+    public void ChangeMesh()
+    {
+        
+    }
 }
