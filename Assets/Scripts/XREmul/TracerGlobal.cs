@@ -5,7 +5,9 @@ using UnityEngine.Windows;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System;
 
+using Newtonsoft.Json;
 public class TracerGlobal {
     // Singleton related
     private static TracerGlobal _singleton;
@@ -64,6 +66,32 @@ public class TracerGlobal {
                     logs
                     .Select(log => log.ToString())
                     .Aggregate((left, right) => left + "\n" + right)));
+        }
+    }
+
+    public void DumpToFileInJson()
+    {
+        foreach (KeyValuePair<string, List<LogEntry>> kv in log_)
+        {
+            string filename = kv.Key;
+            List<LogEntry> logs = kv.Value;
+
+            try
+            {
+                StreamWriter sw = new StreamWriter(System.IO.File.Open(Application.dataPath + "\\" +  filename+".json", FileMode.Create));
+                string[] load = new string[logs.Count];
+
+
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+                sw.Write(JsonConvert.SerializeObject(logs, settings));
+
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }
