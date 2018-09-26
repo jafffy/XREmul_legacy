@@ -7,18 +7,21 @@ using UnityEditor;
 using Leap.Unity;
 using Leap;
 using Leap.Unity.Encoding;
-
+using Leap.Unity.Interaction;
 public class TestScript : MonoBehaviour {
-
+    public HandModelManager handModelManager;
     public LeapXRServiceProvider provider;
+    public InteractionHand rightHand;
+    public InteractionHand leftHand;
 
-    public CapsuleHand rightHand;
+    Frame[] capturedFrames;
+    int cursor = 0;
+    bool captureEnable = false;
 
-    Frame capturedFrame;
 
     // Use this for initialization
     void Start () {
-        
+        capturedFrames = new Frame[300];
 	}
 	
 	// Update is called once per frame
@@ -26,20 +29,37 @@ public class TestScript : MonoBehaviour {
 		
 	}
 
-    public void CaptureFrame()
+    void FixedUpdate()
     {
-        capturedFrame = provider.CurrentFrame;
-        Debug.Log("frame " + capturedFrame.Id);
+        if(captureEnable)
+        {
+            Frame hardCopy = new Frame();
+            hardCopy.CopyFrom(provider.CurrentFrame);
+            capturedFrames[cursor++] = hardCopy;
+            
+        }
+        if(cursor == capturedFrames.Length && captureEnable)
+        {
+            Debug.Log("Completed");
+            captureEnable = false;
+            LeapDataProvider.getInstance().savedFrame = capturedFrames;
+        }
     }
 
-    public void TransformFrame()
+    public void CaptureFrameFor3Seconds()
     {
-        Hand source = HandUtils.Get(capturedFrame, Chirality.Right);
-
-        rightHand.SetLeapHand(source);
-        //VectorHand vHand = new VectorHand(source);
-        //vHand.Decode(HandUtils.Get(provider.CurrentFrame, Chirality.Right));
-
-        EditorApplication.isPaused = true;
+        captureEnable = true;
     }
+    
+    public void ChangeProvider()
+    {
+        Debug.Log("Changed");
+        handModelManager.leapProvider = LeapDataProvider.getInstance();
+        provider.enabled = false;
+         leftHand.leapProvider = LeapDataProvider.getInstance();
+        rightHand.leapProvider = LeapDataProvider.getInstance();
+
+        LeapDataProvider.getInstance().StartReplay();
+    }
+
 }

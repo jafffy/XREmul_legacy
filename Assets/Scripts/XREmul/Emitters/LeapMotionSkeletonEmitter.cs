@@ -5,25 +5,30 @@ using UnityEngine;
 using Leap;
 using Leap.Unity;
 
-public class LeapMotionSkeletonEmitter : AbstractLeapSkeletonEmitter
+public class LeapMotionSkeletonEmitter : AbstractLeapmotionEmitter
 {
-    LeapMotionController LeapController;
+    //API에 의한 Dependency가 생겨도 괜찮다 (이 클래스에서)
+    public LeapXRServiceProvider provider;
 
     void Start()
     {
-        LeapController = GetComponent<LeapMotionController>();
+        if(provider == null)
+        {
+            provider = GetComponent<LeapXRServiceProvider>();
+            if(provider == null)
+                Debug.LogError("No Valid LeapXRServiceProvider");
+        }
     }
-
-    public override SkeletonPair SkeletonData
+    public override FrameData frameData
     {
         get
         {
-            return new SkeletonPair
+            return new FrameData()
             {
-                LeftHandPositions = LeapController.GetHandPositions(LeapController.leftHand),
-                RightHandPositions = LeapController.GetHandPositions(LeapController.rightHand)
-            }; 
+                frame = new Frame().CopyFrom(provider.CurrentFrame) // Make hard-copy
+            };
         }
     }
 
+    
 }
