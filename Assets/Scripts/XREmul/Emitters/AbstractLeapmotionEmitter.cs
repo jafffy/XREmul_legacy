@@ -10,7 +10,7 @@ using System.Runtime.Serialization;
 using System.IO;
 using System.Text;
 
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 public abstract class AbstractLeapmotionEmitter : AbstractRecorder {
 
@@ -26,10 +26,10 @@ public abstract class AbstractLeapmotionEmitter : AbstractRecorder {
     {
         FrameData data = frameData;
 
-        JsonSerializerSettings settings = new JsonSerializerSettings();
-        settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        //JsonSerializerSettings settings = new JsonSerializerSettings();
+        //settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
-		return JsonConvert.SerializeObject(data, settings);
+		return "";//JsonConvert.SerializeObject(data, settings);
     }
 }
 

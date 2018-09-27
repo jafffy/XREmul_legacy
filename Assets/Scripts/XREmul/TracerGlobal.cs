@@ -7,7 +7,7 @@ using System.Text;
 using System.IO;
 using System;
 
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 public class TracerGlobal {
     // Singleton related
     private static TracerGlobal _singleton;
@@ -82,10 +82,10 @@ public class TracerGlobal {
                 string[] load = new string[logs.Count];
 
 
-                JsonSerializerSettings settings = new JsonSerializerSettings();
-                settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                //JsonSerializerSettings settings = new JsonSerializerSettings();
+                //settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
-                sw.Write(JsonConvert.SerializeObject(logs, settings));
+                //sw.Write(JsonConvert.SerializeObject(logs, settings));
 
             }
             catch (Exception e)
