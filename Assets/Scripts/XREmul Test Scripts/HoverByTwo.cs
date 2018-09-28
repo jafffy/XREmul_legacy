@@ -34,4 +34,19 @@ public class HoverByTwo : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        _material.color = Color.Lerp(_material.color, Color.black, Time.deltaTime);
+    }
+    /// <summary>
+    /// This function is called when the MonoBehaviour will be destroyed.
+    /// </summary>
+    void OnDestroy()
+    {
+        _intObj.OnHoverStay -= Shining;
+    }
+
 }
