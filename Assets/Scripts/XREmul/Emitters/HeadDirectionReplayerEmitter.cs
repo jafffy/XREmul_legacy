@@ -25,7 +25,7 @@ public class HeadDirectionReplayerEmitter : AbstractHeadDirectionEmitter {
         public float timer;
         public Quaternion rotation;
     }
-    //이 아래 코드 new 필요 없을듯
+   
     private List<HeadDirectionLog> headDirectionLogs_ = new List<HeadDirectionLog>();
     private int headDirectionLogIndex = 0;
 
