@@ -1205,7 +1205,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 38602960}
-        m_MethodName: RandomizeSetting
+        m_MethodName: RandomizeHoverSetting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
