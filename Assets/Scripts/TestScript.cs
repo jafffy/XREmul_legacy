@@ -24,10 +24,6 @@ public class TestScript : MonoBehaviour {
         capturedFrames = new Frame[300];
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void FixedUpdate()
     {

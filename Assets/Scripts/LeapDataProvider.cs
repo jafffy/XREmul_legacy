@@ -13,9 +13,7 @@ public class LeapDataProvider : LeapProvider
 	{
 		return instance;
 	}
-	/// <summary>
-	/// Awake is called when the script instance is being loaded.
-	/// </summary>
+
 	void Awake()
 	{
 		instance = this;
