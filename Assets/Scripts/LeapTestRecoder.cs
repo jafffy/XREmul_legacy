@@ -8,7 +8,8 @@ using Leap.Unity;
 using Leap;
 using Leap.Unity.Encoding;
 using Leap.Unity.Interaction;
-public class TestScript : MonoBehaviour {
+public class LeapTestRecoder : MonoBehaviour {
+    public int CaptureFrameCount = 300;
     public HandModelManager handModelManager;
     public LeapXRServiceProvider provider;
     public InteractionHand rightHand;
@@ -21,7 +22,7 @@ public class TestScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        capturedFrames = new Frame[300];
+        capturedFrames = new Frame[CaptureFrameCount];
 	}
 	
 
@@ -42,7 +43,7 @@ public class TestScript : MonoBehaviour {
         }
     }
 
-    public void CaptureFrameFor3Seconds()
+    public void StartCapture()
     {
         captureEnable = true;
     }
@@ -52,7 +53,7 @@ public class TestScript : MonoBehaviour {
         Debug.Log("Changed");
         handModelManager.leapProvider = LeapDataProvider.getInstance();
         provider.enabled = false;
-         leftHand.leapProvider = LeapDataProvider.getInstance();
+        leftHand.leapProvider = LeapDataProvider.getInstance();
         rightHand.leapProvider = LeapDataProvider.getInstance();
 
         LeapDataProvider.getInstance().StartReplay();
