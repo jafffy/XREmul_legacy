@@ -22,5 +22,5 @@ public abstract class AbstractRecorder : MonoBehaviour {
         }
 	}
 
-    internal abstract string GetRecordEntry();
+    internal abstract object GetRecordEntry();
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AbstractHeadDirectionEmitter : AbstractRecorder {
     abstract public Quaternion HeadDirection { get; }
 
-    internal override string GetRecordEntry()
+    internal override object GetRecordEntry()
     {
         Vector3 euler = HeadDirection.eulerAngles;
 

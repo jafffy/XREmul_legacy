@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AbstractHeadPositionEmitter : AbstractRecorder {
     abstract public Vector3 HeadPosition { get; }
 
-    internal override string GetRecordEntry()
+    internal override object GetRecordEntry()
     {
         Vector3 pos = HeadPosition;
 
