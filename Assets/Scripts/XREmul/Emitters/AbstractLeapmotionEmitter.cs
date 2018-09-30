@@ -43,7 +43,6 @@ public abstract class AbstractLeapmotionEmitter : AbstractRecorder {
         }
     }
 
-
     abstract public FrameData frameData { get; }
 
     internal override object GetRecordEntry()
